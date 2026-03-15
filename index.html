@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coastal Spirit · Sustainable Clothing</title>
+    <meta name="description" content="Comfortable, distinctive clothing made with care for people and planet. Inspired by the coast.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Preconnect for performance (optional) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Simple, clean font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Skip to main content link (accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- HEADER / NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="/">
+                    <!-- Simple text logo (you can replace with an image) -->
+                    <span class="logo-text">Coastal Spirit</span>
+                </a>
+            </div>
+            
+            <!-- Main navigation -->
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="/" class="active">Home</a></li>
+                    <li><a href="#new">New Arrivals</a></li>
+                    <li><a href="#men">Men's</a></li>
+                    <li><a href="#women">Women's</a></li>
+                    <li><a href="#story">Our Story</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Simple icons (you can replace with SVGs) -->
+            <div class="header-icons">
+                <button class="icon-btn" aria-label="Search">
+                    <span class="icon">🔍</span>
+                </button>
+                <button class="icon-btn" aria-label="Your bag">
+                    <span class="icon">🛍️</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main id="main-content">
+
+        <!-- HERO SECTION (Above the fold - clean and clear) -->
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <span class="hero-badge">Sustainable style since 1993</span>
+                    <h1 class="hero-title">Clothes that feel like old favourites,<br>made to last for years.</h1>
+                    <p class="hero-text">Comfortable, distinctive, and responsibly made. Inspired by the coast, designed for real life.</p>
+                    <div class="hero-buttons">
+                        <a href="#new" class="btn btn-primary">Explore new arrivals</a>
+                        <a href="#story" class="btn btn-secondary">Our story</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <!-- You add your image here (e.g., a scenic coastal photo or model wearing clothes) -->
+                    <div class="image-placeholder">
+                        <img src="images/hero-placeholder.jpg" alt="Person wearing sustainable clothing by the coast" loading="eager" width="600" height="400">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FEATURED CATEGORIES (clean grid) -->
+        <section class="categories" id="new">
+            <div class="container">
+                <h2 class="section-title">New this week</h2>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <div class="card-image">
+                            <img src="images/mens-new.jpg" alt="Men's organic cotton sweatshirt" loading="lazy" width="300" height="400">
+                        </div>
+                        <h3>Men's sweatshirts</h3>
+                        <p>Organic cotton, made ethically</p>
+                        <a href="#" class="card-link">Shop men's →</a>
+                    </div>
+                    <div class="category-card">
+                        <div class="card-image">
+                            <img src="images/womens-new.jpg" alt="Women's knitwear in natural colours" loading="lazy" width="300" height="400">
+                        </div>
+                        <h3>Women's knitwear</h3>
+                        <p>Cosy, sustainable, timeless</p>
+                        <a href="#" class="card-link">Shop women's →</a>
+                    </div>
+                    <div class="category-card">
+                        <div class="card-image">
+                            <img src="images/accessories.jpg" alt="Sustainable accessories" loading="lazy" width="300" height="400">
+                        </div>
+                        <h3>Accessories</h3>
+                        <p>Hats, scarves & more</p>
+                        <a href="#" class="card-link">Shop accessories →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OUR STORY (clear brand narrative) -->
+        <section class="story" id="story">
+            <div class="container story-container">
+                <div class="story-image">
+                    <img src="images/coast-story.jpg" alt="Cornish coastal path where the brand was inspired" loading="lazy" width="500" height="350">
+                </div>
+                <div class="story-content">
+                    <h2>What is Coastal Spirit all about?</h2>
+                    <p>Founded in 1993 after an inspiring walk along the Cornish coast, we started with a simple mission: to create well-priced, well-made, and distinctive clothes that quickly become feel-good favourites.</p>
+                    <p>Over 30 years later, we're still doing exactly that. A sense of fun, an eye for practicality, and a deep commitment to slow fashion—designing pieces you'll love for years, not just one season.</p>
+                    <p class="signature">— The Coastal Spirit team</p>
+                    <a href="#" class="btn btn-secondary">Read our full story</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER (simplified, not intrusive) -->
+        <section class="newsletter">
+            <div class="container newsletter-container">
+                <div class="newsletter-text">
+                    <h2>Good things come to those who sign up</h2>
+                    <p>Get 20% off your first order, plus the latest arrivals, offers, and coastal inspiration.</p>
+                </div>
+                <form class="newsletter-form">
+                    <div class="form-group">
+                        <label for="email" class="sr-only">Email address</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </form>
+                <p class="form-note">We'll never share your data. Unsubscribe anytime.</p>
+            </div>
+        </section>
+
+        <!-- FREE SHIPPING BANNER (clean, one clear message) -->
+        <div class="shipping-banner">
+            <div class="container">
+                <p>🇬🇧 <strong>Free UK returns</strong> within 30 days · Paperless returns via your account</p>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Coastal Spirit</h3>
+                <p>Clothes made with care, for people and planet. Inspired by the coast since 1993.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="#">Men's</a></li>
+                    <li><a href="#">Women's</a></li>
+                    <li><a href="#">New arrivals</a></li>
+                    <li><a href="#">Sale</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="#">Our story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow</h3>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Instagram">📷 Instagram</a></li>
+                    <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Coastal Spirit. All rights reserved. Demo site for educational purposes.</p>
+                <!-- Simple cookie consent link (opens lightweight popup) -->
+                <button class="cookie-settings-btn" id="cookieSettings">Cookie settings</button>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SIMPLE COOKIE CONSENT POPUP (lightweight, non-intrusive) -->
+    <div class="cookie-consent" id="cookieConsent">
+        <div class="cookie-content">
+            <p>We use essential cookies to make our site work. With your permission, we'd also like to set optional analytics cookies to help us improve. <a href="#">Learn more</a>.</p>
+            <div class="cookie-buttons">
+                <button class="cookie-btn cookie-btn-essential" id="acceptEssential">Only essentials</button>
+                <button class="cookie-btn cookie-btn-accept" id="acceptAll">Accept all</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for simple interactions -->
+    <script src="js/main.js"></script>
+</body>
+</html>
