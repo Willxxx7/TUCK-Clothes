@@ -165,6 +165,7 @@ a:hover {
 .header-icons {
     display: flex;
     gap: var(--space-sm);
+    position: relative;
 }
 
 .icon-btn {
@@ -175,10 +176,25 @@ a:hover {
     padding: var(--space-xs);
     border-radius: 50%;
     transition: var(--transition);
+    position: relative;
 }
 
 .icon-btn:hover {
     background-color: var(--color-sand);
+}
+
+/* ===== HEADER CART COUNT BADGE ===== */
+.cart-count-header {
+    background-color: var(--color-ocean);
+    color: white;
+    border-radius: 50%;
+    padding: 2px 6px;
+    font-size: 0.7rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 18px;
+    font-weight: bold;
 }
 
 /* ===== BUTTONS ===== */
@@ -526,47 +542,7 @@ section {
     background-color: #1d3b45;
 }
 
-/* ===== RESPONSIVE DESIGN ===== */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-    
-    h2 {
-        font-size: 1.8rem;
-    }
-    
-    .hero-container,
-    .story-container {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-    
-    .hero-content {
-        text-align: center;
-    }
-    
-    .hero-buttons {
-        justify-content: center;
-    }
-    
-    .main-nav {
-        display: none; /* Would need a mobile menu toggle in JS */
-    }
-    
-    .newsletter-form {
-        flex-direction: column;
-    }
-    
-    .footer-container {
-        gap: var(--space-md);
-    }
-    
-    .cookie-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    /* Loading state */
+/* ===== LOADING STATE ===== */
 .loading {
     text-align: center;
     padding: var(--space-xl);
@@ -576,7 +552,7 @@ section {
     grid-column: 1 / -1;
 }
 
-/* Price styling */
+/* ===== PRICE STYLING ===== */
 .price {
     font-weight: 600;
     color: var(--color-ocean);
@@ -584,13 +560,13 @@ section {
     margin: var(--space-xs) 0;
 }
 
-/* Add to bag button */
+/* ===== ADD TO BAG BUTTON ===== */
 .add-to-cart {
     margin: var(--space-sm);
     width: calc(100% - var(--space-md));
 }
 
-/* Error handling for images */
+/* ===== ERROR HANDLING FOR IMAGES ===== */
 .card-image img {
     background-color: var(--color-stone);
     min-height: 250px;
@@ -599,7 +575,7 @@ section {
     height: 100%;
 }
 
-/* Cart feedback (optional) */
+/* ===== CART BADGE (optional) ===== */
 .cart-badge {
     background-color: var(--color-ocean);
     color: white;
@@ -610,7 +586,8 @@ section {
     top: -10px;
     left: -5px;
 }
-    /* ===== MINI CART ===== */
+
+/* ===== MINI CART ===== */
 .cart-toggle {
     position: fixed;
     top: 100px;
@@ -749,7 +726,7 @@ section {
     width: 100%;
 }
 
-/* Overlay when cart is open */
+/* ===== CART OVERLAY ===== */
 .cart-overlay {
     position: fixed;
     top: 0;
@@ -765,6 +742,70 @@ section {
     display: block;
 }
 
+/* ===== PULSE ANIMATION ===== */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.cart-toggle.pulse {
+    animation: pulse 0.3s ease;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    .hero-container,
+    .story-container {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .hero-content {
+        text-align: center;
+    }
+    
+    .hero-buttons {
+        justify-content: center;
+    }
+    
+    .main-nav {
+        display: none;
+    }
+    
+    .newsletter-form {
+        flex-direction: column;
+    }
+    
+    .footer-container {
+        gap: var(--space-md);
+    }
+    
+    .cookie-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    /* Mobile cart adjustments */
+    .cart-toggle {
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .mini-cart {
+        width: 100%;
+        max-width: 350px;
+    }
+}
 
 /* ===== PERFORMANCE NOTE (can be removed) ===== */
 /* 
