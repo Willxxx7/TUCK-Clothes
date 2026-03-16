@@ -409,6 +409,7 @@ function setupCart() {
             miniCart.classList.add('open');     // Slide in the cart
             overlay.classList.add('show');       // Show the overlay
             updateCartDisplay();                  // Refresh cart contents
+            updateHeaderCartCount();               // Update header cart count
         });
     }
     
@@ -431,13 +432,27 @@ function setupCart() {
     // ===== INITIAL CART DISPLAY =====
     // Update cart display from localStorage (shows any items already in cart)
     updateCartDisplay();
+    updateHeaderCartCount(); // Update header cart count on page load
 }
 
 // ============================================================================
 // FUNCTION: createCartElements
 // ============================================================================
-// In createCartElements function, replace the checkout button line with:
-<button class="btn btn-primary checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+// This function creates all the HTML elements needed for the shopping cart
+// and adds them to the DOM. This includes the cart toggle button and the
+// mini cart panel.
+function createCartElements() {
+    // ===== CREATE CART TOGGLE BUTTON =====
+    // This button floats on the page and shows the current item count
+    const cartToggle = document.createElement('button');
+    cartToggle.id = 'cartToggle';                     // ID for JavaScript access
+    cartToggle.className = 'cart-toggle';              // CSS class for styling
+    cartToggle.innerHTML = `
+        <span class="cart-icon">🛍️</span>              <!-- Shopping bag emoji -->
+        <span class="cart-count" id="cartCount">0</span> <!-- Item count badge -->
+    `;
+    // Add the button to the page (appends to end of body)
+    document.body.appendChild(cartToggle);
     
     // ===== CREATE MINI CART PANEL =====
     // This is the slide-out cart panel that appears from the right
@@ -462,7 +477,7 @@ function setupCart() {
                 <span>Total:</span>
                 <span id="cartTotal">£0.00</span>
             </div>
-            <button class="btn btn-primary checkout-btn" onclick="alert('Checkout would happen here!')">Checkout</button>
+            <button class="btn btn-primary checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
         </div>
     `;
     // Add the cart panel to the page
@@ -512,6 +527,7 @@ function addToCart(id, name, price, image) {
     
     // ===== UPDATE DISPLAY =====
     updateCartDisplay();
+    updateHeaderCartCount(); // Update header cart count
     
     // ===== VISUAL FEEDBACK =====
     // Add pulse animation to cart button to show item was added
@@ -604,6 +620,25 @@ function updateCartDisplay() {
 }
 
 // ============================================================================
+// FUNCTION: updateHeaderCartCount
+// ============================================================================
+// This function updates the cart count badge in the header next to the bag icon.
+// It reads cart data from localStorage and displays the total number of items.
+function updateHeaderCartCount() {
+    // Get cart data from localStorage
+    const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Calculate total number of items (sum of quantities)
+    const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    
+    // Update the header cart count badge
+    const headerCount = document.getElementById('cartCountHeader');
+    if (headerCount) {
+        headerCount.textContent = totalItems;
+    }
+}
+
+// ============================================================================
 // FUNCTION: removeFromCart
 // ============================================================================
 // This function removes an item from the shopping cart.
@@ -623,6 +658,7 @@ function removeFromCart(id) {
     
     // ===== UPDATE DISPLAY =====
     updateCartDisplay();
+    updateHeaderCartCount(); // Update header cart count
 }
 
 // ============================================================================
