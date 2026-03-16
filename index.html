@@ -16,29 +16,31 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- MINI CART - Add this after header -->
-<div class="mini-cart" id="miniCart">
-    <div class="mini-cart-header">
-        <h3>Your Bag</h3>
-        <button class="close-cart" id="closeCart">✕</button>
-    </div>
-    <div class="mini-cart-items" id="cartItems">
-        <p class="empty-cart">Your bag is empty</p>
-    </div>
-    <div class="mini-cart-footer">
-        <div class="cart-total">
-            <span>Total:</span>
-            <span id="cartTotal">£0.00</span>
+    <!-- MINI CART - Slide-out shopping cart -->
+    <div class="mini-cart" id="miniCart">
+        <div class="mini-cart-header">
+            <h3>Your Bag</h3>
+            <button class="close-cart" id="closeCart">✕</button>
         </div>
-        <button class="btn btn-primary checkout-btn">Checkout</button>
+        <div class="mini-cart-items" id="cartItems">
+            <p class="empty-cart">Your bag is empty</p>
+        </div>
+        <div class="mini-cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cartTotal">£0.00</span>
+            </div>
+            <!-- Checkout button now links to checkout.html -->
+            <button class="btn btn-primary checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
+        </div>
     </div>
-</div>
 
-<!-- Cart toggle button (shows item count) -->
-<button class="cart-toggle" id="cartToggle">
-    <span class="cart-icon">🛍️</span>
-    <span class="cart-count" id="cartCount">0</span>
-</button>
+    <!-- Cart toggle button (floating button that shows item count) -->
+    <button class="cart-toggle" id="cartToggle">
+        <span class="cart-icon">🛍️</span>
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
     <!-- Skip to main content link (accessibility) -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
 
@@ -47,7 +49,6 @@
         <div class="container header-container">
             <div class="logo">
                 <a href="/">
-                    <!-- Simple text logo (you can replace with an image) -->
                     <span class="logo-text">Coastal Spirit</span>
                 </a>
             </div>
@@ -63,13 +64,15 @@
                 </ul>
             </nav>
             
-            <!-- Simple icons (you can replace with SVGs) -->
+            <!-- Header icons - REPLACED the duplicate bag button with cart toggle that links to checkout -->
             <div class="header-icons">
                 <button class="icon-btn" aria-label="Search">
                     <span class="icon">🔍</span>
                 </button>
-                <button class="icon-btn" aria-label="Your bag">
+                <!-- This button now links to checkout and shows cart count -->
+                <button class="icon-btn" id="cartToggleHeader" aria-label="Your bag" onclick="window.location.href='checkout.html'">
                     <span class="icon">🛍️</span>
+                    <span class="cart-count-header" id="cartCountHeader">0</span>
                 </button>
             </div>
         </div>
@@ -91,7 +94,6 @@
                     </div>
                 </div>
                 <div class="hero-image">
-                    <!-- You add your image here (e.g., a scenic coastal photo or model wearing clothes) -->
                     <div class="image-placeholder">
                         <img src="images/hero-placeholder.jpg" alt="Person wearing sustainable clothing by the coast" loading="eager" width="600" height="400">
                     </div>
@@ -104,30 +106,7 @@
             <div class="container">
                 <h2 class="section-title">New this week</h2>
                 <div class="category-grid">
-                    <div class="category-card">
-                        <div class="card-image">
-                            <img src="images/mens-new.jpg" alt="Men's organic cotton sweatshirt" loading="lazy" width="300" height="400">
-                        </div>
-                        <h3>Men's sweatshirts</h3>
-                        <p>Organic cotton, made ethically</p>
-                        <a href="#" class="card-link">Shop men's →</a>
-                    </div>
-                    <div class="category-card">
-                        <div class="card-image">
-                            <img src="images/womens-new.jpg" alt="Women's knitwear in natural colours" loading="lazy" width="300" height="400">
-                        </div>
-                        <h3>Women's knitwear</h3>
-                        <p>Cosy, sustainable, timeless</p>
-                        <a href="#" class="card-link">Shop women's →</a>
-                    </div>
-                    <div class="category-card">
-                        <div class="card-image">
-                            <img src="images/accessories.jpg" alt="Sustainable accessories" loading="lazy" width="300" height="400">
-                        </div>
-                        <h3>Accessories</h3>
-                        <p>Hats, scarves & more</p>
-                        <a href="#" class="card-link">Shop accessories →</a>
-                    </div>
+                    <!-- Products will be loaded here by JavaScript from MockAPI -->
                 </div>
             </div>
         </section>
@@ -228,7 +207,7 @@
         </div>
     </div>
 
-    <!-- JavaScript for simple interactions -->
+    <!-- JavaScript for interactions -->
     <script src="js/main.js"></script>
 </body>
 </html>
