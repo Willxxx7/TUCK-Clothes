@@ -436,21 +436,8 @@ function setupCart() {
 // ============================================================================
 // FUNCTION: createCartElements
 // ============================================================================
-// This function creates all the HTML elements needed for the shopping cart
-// and adds them to the DOM. This includes the cart toggle button and the
-// mini cart panel.
-function createCartElements() {
-    // ===== CREATE CART TOGGLE BUTTON =====
-    // This button floats on the page and shows the current item count
-    const cartToggle = document.createElement('button');
-    cartToggle.id = 'cartToggle';                     // ID for JavaScript access
-    cartToggle.className = 'cart-toggle';              // CSS class for styling
-    cartToggle.innerHTML = `
-        <span class="cart-icon">🛍️</span>              <!-- Shopping bag emoji -->
-        <span class="cart-count" id="cartCount">0</span> <!-- Item count badge -->
-    `;
-    // Add the button to the page (appends to end of body)
-    document.body.appendChild(cartToggle);
+// In createCartElements function, replace the checkout button line with:
+<button class="btn btn-primary checkout-btn" onclick="window.location.href='checkout.html'">Checkout</button>
     
     // ===== CREATE MINI CART PANEL =====
     // This is the slide-out cart panel that appears from the right
