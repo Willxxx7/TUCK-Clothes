@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout · Coastal Spirit</title>
+    <meta name="description" content="Complete your purchase of sustainable coastal clothing.">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Additional checkout-specific styles */
+        .checkout-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            display: grid;
+            grid-template-columns: 1fr 0.8fr;
+            gap: 2rem;
+        }
+        
+        .checkout-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .form-section {
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--color-stone);
+        }
+        
+        .form-section h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: var(--color-charcoal);
+        }
+        
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 500;
+            font-size: 0.9rem;
+            color: var(--color-driftwood);
+        }
+        
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--color-stone);
+            border-radius: 4px;
+            font-family: var(--font-body);
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--color-ocean);
+            box-shadow: 0 0 0 2px rgba(43, 79, 92, 0.1);
+        }
+        
+        .order-summary {
+            background: var(--color-sand);
+            padding: 2rem;
+            border-radius: 8px;
+            height: fit-content;
+            position: sticky;
+            top: 100px;
+        }
+        
+        .order-summary h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-items {
+            margin-bottom: 1.5rem;
+        }
+        
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--color-stone);
+        }
+        
+        .order-item-details {
+            flex: 1;
+        }
+        
+        .order-item-name {
+            font-weight: 600;
+        }
+        
+        .order-item-price {
+            color: var(--color-ocean);
+        }
+        
+        .order-total {
+            display: flex;
+            justify-content: space-between;
+            font-weight: bold;
+            font-size: 1.2rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--color-stone);
+            margin-top: 1rem;
+        }
+        
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+        
+        .payment-method {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid var(--color-stone);
+            border-radius: 4px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .payment-method.selected {
+            border-color: var(--color-ocean);
+            background-color: rgba(43, 79, 92, 0.05);
+        }
+        
+        .payment-method img {
+            height: 30px;
+            margin-bottom: 0.5rem;
+        }
+        
+        .place-order-btn {
+            width: 100%;
+            padding: 1rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+        
+        .empty-cart-checkout {
+            text-align: center;
+            padding: 3rem;
+        }
+        
+        .empty-cart-checkout p {
+            margin-bottom: 1rem;
+            color: var(--color-driftwood);
+        }
+        
+        @media (max-width: 768px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .order-summary {
+                position: static;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER / NAVIGATION -->
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="index.html">
+                    <span class="logo-text">Coastal Spirit</span>
+                </a>
+            </div>
+            
+            <!-- Main navigation -->
+            <nav class="main-nav" aria-label="Main navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#new">New Arrivals</a></li>
+                    <li><a href="index.html#men">Men's</a></li>
+                    <li><a href="index.html#women">Women's</a></li>
+                    <li><a href="index.html#story">Our Story</a></li>
+                </ul>
+            </nav>
+            
+            <!-- Cart toggle button -->
+            <button class="cart-toggle-header" id="cartToggleHeader" onclick="window.location.href='checkout.html'">
+                <span class="cart-icon">🛍️</span>
+                <span class="cart-count" id="cartCountHeader">0</span>
+            </button>
+        </div>
+    </header>
+
+    <main>
+        <div class="checkout-container" id="checkoutContainer">
+            <!-- Will be populated by JavaScript -->
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-col">
+                <h3>Coastal Spirit</h3>
+                <p>Clothes made with care, for people and planet. Inspired by the coast since 1993.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Shop</h3>
+                <ul>
+                    <li><a href="index.html#men">Men's</a></li>
+                    <li><a href="index.html#women">Women's</a></li>
+                    <li><a href="index.html#new">New arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>About</h3>
+                <ul>
+                    <li><a href="index.html#story">Our story</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Follow</h3>
+                <ul class="social-links">
+                    <li><a href="#" aria-label="Instagram">📷 Instagram</a></li>
+                    <li><a href="#" aria-label="Facebook">📘 Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>© 2025 Coastal Spirit. Demo site for educational purposes.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ===== CHECKOUT PAGE JAVASCRIPT =====
+        
+        // Load cart and display checkout when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            displayCheckout();
+            updateHeaderCartCount();
+        });
+        
+        // Update the cart count in the header
+        function updateHeaderCartCount() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const totalItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
+            const cartCount = document.getElementById('cartCountHeader');
+            if (cartCount) {
+                cartCount.textContent = totalItems;
+            }
+        }
+        
+        // Main function to display checkout page
+        function displayCheckout() {
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+            const container = document.getElementById('checkoutContainer');
+            
+            // If cart is empty, show empty cart message
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="empty-cart-checkout" style="grid-column: 1/-1;">
+                        <h2>Your bag is empty</h2>
+                        <p>Add some coastal favourites to your bag before checking out.</p>
+                        <a href="index.html" class="btn btn-primary">Continue Shopping</a>
+                    </div>
+                `;
+                return;
+            }
+            
+            // Calculate totals
+            let subtotal = 0;
+            let itemsHtml = '';
+            
+            cart.forEach(item => {
+                const itemTotal = item.price * (item.quantity || 1);
+                subtotal += itemTotal;
+                
+                itemsHtml += `
+                    <div class="order-item">
+                        <div class="order-item-details">
+                            <div class="order-item-name">${item.name}</div>
+                            <div class="order-item-quantity">Qty: ${item.quantity || 1}</div>
+                        </div>
+                        <div class="order-item-price">£${itemTotal.toFixed(2)}</div>
+                    </div>
+                `;
+            });
+            
+            const shipping = 4.95;
+            const total = subtotal + shipping;
+            
+            // Build the checkout page HTML
+            container.innerHTML = `
+                <!-- CHECKOUT FORM SECTION -->
+                <div class="checkout-form">
+                    <h1>Checkout</h1>
+                    
+                    <!-- Contact Information -->
+                    <div class="form-section">
+                        <h2>Contact information</h2>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" id="email" placeholder="you@example.com" value="customer@coastal.com">
+                        </div>
+                    </div>
+                    
+                    <!-- Delivery Address -->
+                    <div class="form-section">
+                        <h2>Delivery address</h2>
+                        <div class="form-group">
+                            <label for="fullName">Full name</label>
+                            <input type="text" id="fullName" value="Jamie Coastal">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" value="42 Coastal Road">
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" value="Falmouth">
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="postcode">Postcode</label>
+                                <input type="text" id="postcode" value="TR11 4RL">
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <select id="country">
+                                    <option value="UK" selected>United Kingdom</option>
+                                    <option value="US">United States</option>
+                                    <option value="EU">Europe</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payment Method -->
+                    <div class="form-section">
+                        <h2>Payment method</h2>
+                        <div class="payment-methods">
+                            <div class="payment-method selected" onclick="selectPayment('card')" id="payment-card">
+                                <div>💳</div>
+                                <div>Credit Card</div>
+                            </div>
+                            <div class="payment-method" onclick="selectPayment('paypal')" id="payment-paypal">
+                                <div>📱</div>
+                                <div>PayPal</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Card details (shown by default) -->
+                        <div id="card-details">
+                            <div class="form-group">
+                                <label for="cardNumber">Card number</label>
+                                <input type="text" id="cardNumber" placeholder="4111 1111 1111 1111" value="4111 1111 1111 1111">
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="expiry">Expiry date</label>
+                                    <input type="text" id="expiry" placeholder="MM/YY" value="12/25">
+                                </div>
+                                <div class="form-group">
+                                    <label for="cvv">CVV</label>
+                                    <input type="text" id="cvv" placeholder="123" value="123">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- PayPal message (hidden by default) -->
+                        <div id="paypal-details" style="display: none; padding: 1rem; background: #f0f0f0; border-radius: 4px;">
+                            You'll be redirected to PayPal to complete your payment.
+                        </div>
+                    </div>
+                    
+                    <!-- Place Order Button -->
+                    <button class="btn btn-primary place-order-btn" onclick="placeOrder()">
+                        Place order · £${total.toFixed(2)}
+                    </button>
+                </div>
+                
+                <!-- ORDER SUMMARY SECTION -->
+                <div class="order-summary">
+                    <h2>Order summary</h2>
+                    <div class="order-items">
+                        ${itemsHtml}
+                    </div>
+                    <div style="margin: 1rem 0;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Subtotal</span>
+                            <span>£${subtotal.toFixed(2)}</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Shipping</span>
+                            <span>£${shipping.toFixed(2)}</span>
+                        </div>
+                    </div>
+                    <div class="order-total">
+                        <span>Total</span>
+                        <span>£${total.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Switch between payment methods
+        function selectPayment(method) {
+            // Update selected styling
+            document.getElementById('payment-card').classList.remove('selected');
+            document.getElementById('payment-paypal').classList.remove('selected');
+            
+            if (method === 'card') {
+                document.getElementById('payment-card').classList.add('selected');
+                document.getElementById('card-details').style.display = 'block';
+                document.getElementById('paypal-details').style.display = 'none';
+            } else {
+                document.getElementById('payment-paypal').classList.add('selected');
+                document.getElementById('card-details').style.display = 'none';
+                document.getElementById('paypal-details').style.display = 'block';
+            }
+        }
+        
+        // Place order function
+        function placeOrder() {
+            // Get form data for demo purposes
+            const name = document.getElementById('fullName')?.value || 'Customer';
+            
+            // Show order confirmation
+            alert(`🎉 Thank you for your order, ${name}!\n\nThis is a demo website for educational purposes. No payment has been taken.\n\nYour order would now be processed and you would receive a confirmation email.`);
+            
+            // Clear the cart
+            localStorage.removeItem('cart');
+            
+            // Redirect back to homepage after 2 seconds
+            setTimeout(() => {
+                window.location.href = 'index.html';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
