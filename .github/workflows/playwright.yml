@@ -5,26 +5,6 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true  # ← FIXES Node 20 warning
 jobs:
   test:
-    timeout-minutes: 15
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v4
-    - uses: actions/setup-node@v4
-      with:
-        node-version: '24'  # ← UPGRADE FROM 20
-    - name: Install dependencies
-      run: npm ci
-    - name: Install Playwright
-      run: npx playwright install --with-deps
-    - name: Run Playwright tests
-      run: npx playwright test
-    - uses: actions/upload-artifact@v4
-      if: always()
-      with:
-        name: playwright-report
-        path: playwright-report/
-        retention-days: 30
+    timeout
