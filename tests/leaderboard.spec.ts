@@ -67,7 +67,7 @@ test('Add to cart button works', async ({ page }) => {
   }
 });
 
-// Skip cookie test - not critical functionality
+// Skip cookie test for now
 test.skip('Cookie consent popup works', async ({ page }) => {
   await page.goto('https://willxxx7.github.io/TUCK-Clothes/');
   
@@ -81,4 +81,11 @@ test.skip('Cookie consent popup works', async ({ page }) => {
   const cookieValue = await page.evaluate(() => localStorage.getItem('cookieConsent'));
   expect(cookieValue).toBe('all');
   console.log('✅ Cookie consent works');
+});
+
+// Test failure example - will show you what a failed test looks like
+test('Test failure example', async ({ page }) => {
+  await page.goto('https://willxxx7.github.io/TUCK-Clothes/');
+  // This will fail intentionally
+  await expect(page.locator('#does-not-exist')).toBeVisible();
 });
