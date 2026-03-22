@@ -5,7 +5,8 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
 jobs:
   test:
     timeout-minutes: 15
@@ -16,7 +17,7 @@ jobs:
       with:
         node-version: '24'
     - name: Install dependencies
-      run: npm ci
+      run: npm install          # ← FIXED: npm ci → npm install
     - name: Install Playwright
       run: npx playwright install --with-deps
     - name: Run Playwright tests
