@@ -24,13 +24,7 @@ jobs:
     - name: Install Playwright browsers
       run: npx playwright install --with-deps
     
-    - name: Wait for GitHub Pages deployment
-      run: |
-        echo "Waiting for GitHub Pages to deploy..."
-        sleep 30  # Give Pages time to deploy
-        # Or use a more sophisticated wait script
-    
-    - name: Run Playwright tests
+    - name: Run Playwright tests against GitHub Pages
       run: npx playwright test
       env:
         BASE_URL: https://willxxx7.github.io/TUCK-Clothes/
