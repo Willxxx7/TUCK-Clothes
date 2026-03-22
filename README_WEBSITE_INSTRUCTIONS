@@ -1,0 +1,166 @@
+🎭 PLAYWRIGHT E2E TESTING GUIDE
+BTEC Level 3 IT - Unit 6 Website Development
+
+🚀 Copy This EXACT Setup to YOUR Project (5 Minutes)
+📁 Complete File Structure
+text
+Your-Website/
+├── index.html              ✅ Your main site
+├── css/style.css           ✅ Your styles
+├── js/main.js              ✅ Your JavaScript
+├── images/                 ✅ Your images
+├── playwright.config.ts    🎭 **ADD THIS** (Chrome/Edge/iPhone config)
+├── tests/
+│   └── example.spec.ts     🎭 **ADD THIS** (your E2E tests)
+└── .github/workflows/
+    └── playwright.yml      🤖 **ADD THIS** (auto-test pipeline)
+
+
+
+
+1. playwright.config.ts (Browser Setup)
+Create new file → Copy this:
+
+typescript:
+import { defineConfig, devices } from '@playwright/test';
+export default defineConfig({
+  testDir: './tests',
+  testMatch: ['**/example.spec.ts'],
+  fullyParallel: true,
+  forbidOnly: !!process.env.CI,
+  retries: process.env.CI ? 2 : 0,
+  workers: process.env.CI ? 1 : undefined,
+  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
+  use: {
+    baseURL: 'https://YOURUSERNAME.github.io/YOUR-REPO/',
+    trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+  },
+  projects: [
+    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
+    { name: 'msedge', use: { ...devices['Desktop Edge'], channel: 'msedge' } },
+    { name: 'iphone', use: { ...devices['iPhone 14'] } },
+  ],
+});
+⚠️ CHANGE YOURUSERNAME and YOUR-REPO to match your GitHub Pages URL.
+
+
+
+2. tests/example.spec.ts (Your Tests)
+Create folder tests/ → Create file example.spec.ts:
+
+typescript
+import { test, expect } from '@playwright/test';
+
+test.describe('YOUR WEBSITE', () => {
+  test('✅ Homepage loads + hero visible', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('h1, .hero h1')).toBeVisible();
+    await expect(page.locator('.product, img, .grid')).toBeVisible();
+  });
+
+  test('✅ Buttons work', async ({ page }) => {
+    await page.goto('/');
+    await page.click('button:visible');
+    await expect(page.locator('main')).toBeVisible();
+  });
+
+  test('✅ Navigation works', async ({ page }) => {
+    await page.goto('/');
+    await page.click('nav a');
+    await expect(page.locator('main')).toBeVisible();
+  });
+
+  test('📱 Mobile responsive', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.grid, .products')).toBeVisible();
+  });
+});
+3. .github/workflows/playwright.yml (Auto-Test Pipeline)
+Create folder path .github/workflows/ → Create file playwright.yml:
+
+text
+name: 'Playwright Tests'
+on: 
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+jobs:
+  test:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4
+      with:
+        node-version: '24'
+    - name: Install dependencies
+      run: npm ci
+    - name: Install Playwright
+      run: npx playwright install --with-deps
+    - name: Run Playwright tests
+      run: npx playwright test
+    - uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: playwright-report
+        path: playwright-report/
+        retention-days: 30
+
+
+
+🎬 HOW TO USE (Student Demo)
+
+Step 1: Enable GitHub Pages
+text:
+Repo → Settings → Pages → Source: "main" → "/ (root)" → Save
+✅ Site: https://YOURUSERNAME.github.io/YOUR-REPO/                      <<<< so add your username and repository name here
+Step 2: Push Files
+text
+git add .
+git commit -m "Add Playwright E2E tests"
+git push
+
+
+Step 3: Watch Tests Run
+text:
+Actions tab → "Playwright Tests" starts automatically (2 mins)
+✅ Green checkmark → Scroll → "Artifacts" → "playwright-report"
+
+
+Step 4: View Results
+text:
+1. Download "playwright-report.zip"
+2. Unzip → Double-click index.html
+3. 🎉 Professional dashboard with screenshots/videos!
+📊 What YOU See
+text:
+
+YOUR WEBSITE tested on:
+✅ Chrome: 4/4 passed [Desktop screenshots]
+✅ Microsoft Edge: 4/4 passed [Edge screenshots]
+✅ iPhone 14: 4/4 passed [Mobile screenshots]
+🎥 Videos: Robot clicks your buttons + navigation!
+✅ TROUBLESHOOTING
+No "Playwright Tests"? → Check .github/workflows/playwright.yml exists
+
+Tests fail? → Update baseURL in config to match your GitHub Pages URL
+
+No artifacts? → Tests didn't run → Check tests/example.spec.ts exists
+
+Node 20 warning? → YAML already uses Node 24 ✅
+
+Copy → Paste → Push → Watch robot test your website across 3 browsers! 🚀
+
+
+
+Created for BTEC Level 3 IT students - Professional CI/CD pipeline FREE!
+
+
+
+
+
