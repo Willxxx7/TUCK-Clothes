@@ -1,27 +1,39 @@
-name: 'Playwright Tests'
-on: 
+name: Playwright Tests
+on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
-  workflow_dispatch:
-env:
-  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
+    branches: [ main, master ]
+
 jobs:
   test:
-    timeout-minutes: 15
+    timeout-minutes: 60
     runs-on: ubuntu-latest
+    
     steps:
     - uses: actions/checkout@v4
+    
     - uses: actions/setup-node@v4
       with:
-        node-version: '24'
+        node-version: 'lts/*'
+    
     - name: Install dependencies
-      run: npm install          # ← FIXED: npm ci → npm install
-    - name: Install Playwright
+      run: npm ci
+      
+    - name: Install Playwright Browsers
       run: npx playwright install --with-deps
+      
+    - name: Build the application
+      run: npm run build  # Add this if you have a build step
+      
+    - name: Start the application
+      run: |
+        npm run start &  # Add this if you have a start script
+        npx wait-on http://localhost:3000
+      
     - name: Run Playwright tests
       run: npx playwright test
+      
     - uses: actions/upload-artifact@v4
       if: always()
       with:
