@@ -1,11 +1,11 @@
 {
-  "name": "tuck-clothes-demo",
+  "name": "tuck-clothes",
   "version": "1.0.0",
-  "description": "BTEC Level 3 e-commerce demo with Playwright tests",
-  "devDependencies": {
-    "@playwright/test": "^1.48.0"
-  },
+  "description": "Coastal Spirit demo website",
   "scripts": {
     "test": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.40.1"
   }
 }
