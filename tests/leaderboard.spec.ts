@@ -1,20 +1,17 @@
-import { defineConfig, devices } from '@playwright/test';
-export default defineConfig({
-  testDir: './tests',
-  testMatch: ['**/leaderboard.spec.ts'],  // ← FIXED: matches your filename
-  fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 1 : undefined,
-  reporter: [['html'], ['json', { outputFile: 'test-results.json' }]],
-  use: {
-    baseURL: 'https://willxxx7.github.io/TUCK-Clothes/',  // ← YOUR URL
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
-  },
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-    { name: 'msedge', use: { ...devices['Desktop Edge'], channel: 'msedge' } },
-    { name: 'iphone', use: { ...devices['iPhone 14'] } },
-  ],
+import { test, expect } from '@playwright/test';
+
+test('TUCK-Clothes: Homepage loads', async ({ page }) => {
+  await page.goto('/');
+  await expect(page).toHaveTitle(/TUCK|Coastal|Shop/);
+});
+
+test('TUCK-Clothes: Add to cart works', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: /Add.*Cart/i }).click();
+  await expect(page.locator('.cart-count')).toContainText('1');
+});
+
+test('TUCK-Clothes: Navigation works', async ({ page }) => {
+  await page.goto('/');
+  await expect(page.getByRole('link', { name: 'Our Story' })).toBeVisible();
 });
