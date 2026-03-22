@@ -1,0 +1,44 @@
+📁 File Structure with Playwright E2E Testing
+text
+TUCK-Clothes/
+├── index.html              ✅ E-commerce homepage (Coastal Spirit demo)
+├── css/
+│   └── style.css           ✅ Responsive styling + cart animations
+├── js/
+│   └── main.js             ✅ Add to cart + header cart counter
+├── images/                 ✅ Product photos (add your own)
+├── README.md               ✅ Design improvements vs Weird Fish
+├── LICENSE                 ✅ GPL-3.0
+├── playwright.config.ts    🎭 Playwright config (Chrome/Edge/iPhone)
+├── tests/
+│   └── leaderboard.spec.ts 🎭 E2E tests: hero/cart/nav/mobile
+└── .github/workflows/
+    └── playwright.yml      🤖 Auto-runs tests on every push/PR
+🎮 Level 3 Demo Features:
+✅ E-commerce flows tested automatically:
+
+Homepage hero + products load
+
+Add to cart → cart counter updates
+
+Navigation menu clicks
+
+Mobile responsive grid + hamburger menu
+
+🤖 GitHub Actions pipeline:
+
+text
+Push code → Playwright Tests → 
+Chrome/Edge/iPhone → 
+🟢 PASS → HTML dashboard with screenshots/videos
+📊 View Results:
+
+Actions tab → "Playwright Tests" → Download playwright-report
+
+Unzip → index.html → Professional test dashboard!
+
+🚀 For Students:
+Copy this structure to your projects → Professional CI/CD + E2E testing FREE!
+
+Created for BTEC Level 3 IT - Unit 6 Website Development
+​
