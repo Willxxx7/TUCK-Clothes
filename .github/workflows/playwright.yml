@@ -16,12 +16,20 @@ jobs:
     - uses: actions/setup-node@v4
       with:
         node-version: 'lts/*'
+        registry-url: 'https://registry.npmjs.org'
+    
+    - name: Clear npm cache
+      run: |
+        npm cache clean --force
+        rm -rf node_modules
     
     - name: Install dependencies
-      run: npm install  # This will generate a fresh lock file
+      run: npm install --verbose
+      env:
+        NPM_CONFIG_REGISTRY: https://registry.npmjs.org/
     
     - name: Install Playwright browsers
-      run: npx playwright install --with-deps chromium msedge
+      run: npx playwright install --with-deps chromium
     
     - name: Wait for GitHub Pages deployment
       run: |
