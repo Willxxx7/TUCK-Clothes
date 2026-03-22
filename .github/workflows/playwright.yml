@@ -5,6 +5,8 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
+env:
+  ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true  # ← FIXES Node 20 warning
 jobs:
   test:
     timeout-minutes: 15
@@ -13,10 +15,10 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4
       with:
-        node-version: '20'
+        node-version: '24'  # ← UPGRADE FROM 20
     - name: Install dependencies
       run: npm ci
-    - name: Install Playwright Browsers
+    - name: Install Playwright
       run: npx playwright install --with-deps
     - name: Run Playwright tests
       run: npx playwright test
