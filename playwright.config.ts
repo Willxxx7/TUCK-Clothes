@@ -9,8 +9,7 @@ export default defineConfig({
   reporter: 'html',
   
   use: {
-    // Test against your deployed GitHub Pages site
-    baseURL: 'https://willxxx7.github.io/TUCK-Clothes/',
+    baseURL: process.env.BASE_URL || 'https://willxxx7.github.io/TUCK-Clothes/',
     trace: 'on-first-retry',
     screenshot: 'only-on-failure',
   },
@@ -29,4 +28,4 @@ export default defineConfig({
       use: { ...devices['iPhone 12'] },
     },
   ],
-});;
+});
