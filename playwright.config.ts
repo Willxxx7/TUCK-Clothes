@@ -2,14 +2,10 @@ import { defineConfig } from '@playwright/test';
 
 export default defineConfig({
   testDir: './tests',
-  timeout: 30000,
-  retries: 1,
+  timeout: 10000,
+  retries: 0,
   use: {
-    baseURL: process.env.BASE_URL || 'https://willxxx7.github.io/TUCK-Clothes/',
-    trace: 'on-first-retry',
-    screenshot: 'only-on-failure',
+    // No baseURL, use full URL in test
+    trace: 'on',
   },
-  projects: [
-    { name: 'chromium', use: { browserName: 'chromium' } },
-  ],
 });
