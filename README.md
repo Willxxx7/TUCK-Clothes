@@ -1,6 +1,6 @@
 # COASTAL SPIRIT DEMO WEBSITE
 
-This is a demonstration website created for educational purposes to show improved web design principles compared to the Weird Fish website.
+This is a demonstration website created for educational purposes to show improved web design principles compared to the clothing websites.
 
 ## DESIGN IMPROVEMENTS DEMONSTRATED:
 
